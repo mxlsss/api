@@ -7,8 +7,17 @@ use Illuminate\Http\Request;
 
 class TestController extends Controller
 {
+
+
+    public  function zhifu(){
+
+        return view('zhifu.zhifu');
+    }
+
+
     public function alipay()
     {
+        $total_amount=$_GET['amount'];
         $ali_gateway = 'https://openapi.alipaydev.com/gateway.do';  //支付网关
         // 公共请求参数
         $appid = '2016100100643257';
@@ -24,7 +33,7 @@ class TestController extends Controller
         // 请求参数
         $out_trade_no = time() . rand(1111,9999);       //商户订单号
         $product_code = 'FAST_INSTANT_TRADE_PAY';
-        $total_amount = 0.01;
+        $total_amount = $total_amount;
         $subject = '测试订单' . $out_trade_no;
         $request_param = [
             'out_trade_no'  => $out_trade_no,
