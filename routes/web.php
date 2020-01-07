@@ -32,3 +32,7 @@ Route::post('login/reg','Api\LoginController@reg');
 Route::post('login/','Api\LoginController@login');
 //列表
 Route::get('login/list','Api\LoginController@userList')->middleware('login');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
