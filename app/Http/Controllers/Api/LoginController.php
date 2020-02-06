@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Redis;
 class LoginController extends Controller
 {
 
+    //注册
     public function reg(Request $request){
 //        echo "$request->input()";
         $password2 = $request->input('password2');
@@ -33,6 +34,7 @@ class LoginController extends Controller
         }
     }
 
+    //登陆
     public function login(Request $request){
 
         $name = $request->input('name');
@@ -50,6 +52,7 @@ class LoginController extends Controller
                     'state'=> '登陆成功',
                     'msg'   => 'ok',
                     'data'  => [
+                        'appid'=>$u['appid'],
                         'token' => $token
                     ]
                 ];
@@ -65,12 +68,19 @@ class LoginController extends Controller
                 'msg'   => '用户不存在'
             ];
         }
-        return $response;
+            return $response;
      }
 
+    //列表
     public function userList()
     {
-        echo "\n 列表123";
+        $data = [
+            'name' => '马祥龙',
+            'email'     => '1113943731@qq.com',
+        ];
+        echo '<pre>';print_r($data);echo'</pre>';
+
     }
+
 
 }

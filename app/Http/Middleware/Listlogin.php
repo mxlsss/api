@@ -23,15 +23,15 @@ class Listlogin
         //$url = $_SERVER[''] . $_SERVER[''];
         $redis_key = 'str:count:u:'.$user_token.':url:'.md5($current_url);
         echo 'redis key: '.$redis_key;echo '</br>';
-        $count = Redis::get($redis_key);        //获取接口的访问次数
-        echo "接口的访问次数： ".$count;echo '</br>';
+        $count = Redis::get($redis_key);       //获取接口的访问次数
+        $aaa=$count+1;
+        echo '<pre>';print_r("接口的访问次数： ".$aaa);echo'</pre>';
         if($count >= 5){
-            echo "请不要频繁访问此接口，访问次数已到上限，请稍后再试";
-            Redis::expire($redis_key,10);
+            echo '<pre>';print_r("请不要频繁访问此接口，访问次数已到上限，请5秒后再试");echo'</pre>';
+            Redis::expire($redis_key,5);
             die;
         }
         $count = Redis::incr($redis_key);
-        echo 'count: '.$count;
         return $next($request);
     }
 }

@@ -31,8 +31,16 @@ Route::post('login/reg','Api\LoginController@reg');
 //登陆
 Route::post('login/','Api\LoginController@login');
 //列表
-Route::get('login/list','Api\LoginController@userList')->middleware('login');
+Route::get('login/list','Api\LoginController@userList')->middleware('checktoken','login');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::post('/fangshua','Fs\FangShua@fs');//防刷
+
