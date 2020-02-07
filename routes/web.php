@@ -36,6 +36,8 @@ Route::get('login/list','Api\LoginController@userList')->middleware('checktoken'
 Route::get('qm','Api\LoginController@qm');
 //get签名
 Route::get('qm2','Api\LoginController@qm2');
+//公钥私钥加密
+Route::get('jiami','Api\LoginController@jiami');
 
 Auth::routes();
 

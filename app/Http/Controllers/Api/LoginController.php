@@ -142,6 +142,26 @@ class LoginController extends Controller
 
         }
 
+    //公钥私钥 加密
+    public function jiami(){
+        $data="1905_马祥龙";
+        echo '<pre>';print_r("原文:".$data);echo'</pre>';
+        $key=file_get_contents(storage_path('keys/priv.key'));
+//        echo '<pre>';print_r($key);echo'</pre>';
+        openssl_private_encrypt($data,$ent_data,$key);
+        echo '<pre>加密后:';print_r($ent_data);echo'</pre>';
+        $ent_data=base64_encode($ent_data);
+        echo '<pre>';print_r($ent_data );echo'</pre>';
+        $url_ent_data=urlencode($ent_data);
+        echo '<pre>ba64和url编码后';print_r($url_ent_data);echo'</pre>';
+
+        echo"</br>";echo "<h1></h1>";
+        $url = 'http://1905passport.hcws.vip/jiemi?data='.$url_ent_data;
+        $server=file_get_contents($url);
+        echo '<pre>';print_r($server);echo'</pre>';
+
+    }
+
 
 
 }
