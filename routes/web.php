@@ -35,7 +35,7 @@ Route::get('login/list','Api\LoginController@userList')->middleware('checktoken'
 //get签名
 Route::get('qm','Api\LoginController@qm');
 //get签名
-Route::post('qm2','Api\LoginController@qm2');
+Route::get('qm2','Api\LoginController@qm2');
 
 Auth::routes();
 
