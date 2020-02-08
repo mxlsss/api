@@ -162,6 +162,45 @@ class LoginController extends Controller
 
     }
 
+    //对称加密
+    public function jiami2(){
+        $data = [
+            'name' => '马祥龙',
+            'email' => '1113943731',
+            'tel' => '18636348261'
+        ];
+        echo '<pre>原文:';
+        print_r($data);
+        echo '</pre>';
+        $json_data = json_encode($data);
+        echo '<pre>';
+        print_r($json_data);
+        echo '</pre>';
+        $method = 'AES-256-CBC';   //加密方式
+        $key = "1905";   //加密键值，标识
+        $iv = 'qqqwerdhryfjguth';
+        $ent_data = openssl_encrypt($json_data, $method, $key, OPENSSL_RAW_DATA, $iv);
+        echo '<pre>加密后:';
+        print_r($ent_data);
+        echo '</pre>';
+        $ent_data = base64_encode($ent_data);
+        echo '<pre>base64加密：  ';
+        print_r($ent_data);
+        echo '</pre>';
+        $url_ent_data = urlencode($ent_data);
+        echo '<pre>url加密:';
+        print_r($url_ent_data);
+        echo '</pre>';
+        echo "</br>";
+
+        $url = 'http://1905passport.hcws.vip/jiemi2?data=' . $url_ent_data;
+        $server = file_get_contents($url);
+        echo '<pre>';
+        print_r($server);
+        echo '</pre>';
+
+    }
+
 
 
 }

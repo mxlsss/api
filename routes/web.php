@@ -38,6 +38,8 @@ Route::get('qm','Api\LoginController@qm');
 Route::get('qm2','Api\LoginController@qm2');
 //公钥私钥加密
 Route::get('jiami','Api\LoginController@jiami');
+//对称加密
+Route::get('jiami2','Api\LoginController@jiami2');
 
 Auth::routes();
 
